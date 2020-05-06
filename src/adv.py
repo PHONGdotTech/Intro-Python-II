@@ -4,15 +4,15 @@ from player import Player
 # Declare all the rooms
 
 room = {
-    'outside':  Room('outside', "Outside Cave Entrance", "North of you, the cave mount beckons"),
+    'outside':  Room("Outside Cave Entrance", "North of you, the cave mount beckons"),
 
-    'foyer':    Room('foyer', "Foyer", "Dim light filters in from the south. Dusty passages run north and east."),
+    'foyer':    Room("Foyer", "Dim light filters in from the south. Dusty passages run north and east."),
 
-    'overlook': Room('overlook', "Grand Overlook", "A steep cliff appears before you, falling into the darkness. Ahead to the north, a light flickers in the distance, but there is no way across the chasm."),
+    'overlook': Room("Grand Overlook", "A steep cliff appears before you, falling into the darkness. Ahead to the north, a light flickers in the distance, but there is no way across the chasm."),
 
-    'narrow':   Room('narrow', "Narrow Passage", "The narrow passage bends here from west to north. The smell of gold permeates the air."),
+    'narrow':   Room("Narrow Passage", "The narrow passage bends here from west to north. The smell of gold permeates the air."),
 
-    'treasure': Room('treasure', "Treasure Chamber", "You've found the long-lost treasure chamber! Sadly, it has already been completely emptied by earlier adventurers. The only exit is to the south."),
+    'treasure': Room("Treasure Chamber", "You've found the long-lost treasure chamber! Sadly, it has already been completely emptied by earlier adventurers. The only exit is to the south."),
 }
 
 
@@ -32,7 +32,7 @@ room['treasure'].s_to = room['narrow']
 #
 
 # Make a new player object that is currently in the 'outside' room.
-player = Player('outside')
+player = Player(room['outside'])
 
 # Write a loop that:
 #
@@ -46,8 +46,8 @@ player = Player('outside')
 # If the user enters "q", quit the game.
 
 while True:
-    print(f'Current room: {room[player.room].title}')
-    print(f'Room description: {room[player.room].description}')
+    print(f'Current room: {player.room.name}')
+    print(f'Room description: {player.room.description}')
     user_input = input('Pick a direction to go: ')
 
     if user_input == "q" or user_input == 'quit' or user_input == 'exit':
@@ -57,33 +57,33 @@ while True:
         # if current room has .n_to then:
         # player.room = current room.n_to
         # else print that direction doesnt exist
-        if hasattr(room[player.room], 'n_to'):
-            print(f'You move north to: {room[player.room].n_to.title}')
-            player.room = room[player.room].n_to.name
+        if hasattr(player.room, 'n_to'):
+            print(f'You move north to: {player.room.n_to.name}')
+            player.room = player.room.n_to
             print('\n')
         else:
             print(f"You cannot go north from here.")
             print('\n')
     elif user_input == "e" or user_input == 'east':
-        if hasattr(room[player.room], 'e_to'):
-            print(f'You move east to: {room[player.room].e_to.title}')
-            player.room = room[player.room].e_to.name
+        if hasattr(player.room, 'e_to'):
+            print(f'You move east to: {player.room.e_to.name}')
+            player.room = player.room.e_to
             print('\n')
         else:
             print(f"You cannot go east from here.")
             print('\n')
     elif user_input == "s" or user_input == 'south':
-        if hasattr(room[player.room], 's_to'):
-            print(f'You move south to: {room[player.room].s_to.title}')
-            player.room = room[player.room].s_to.name
+        if hasattr(player.room, 's_to'):
+            print(f'You move south to: {player.room.s_to.name}')
+            player.room = player.room.s_to
             print('\n')
         else:
             print(f"You cannot go south from here.")
             print('\n')
     elif user_input == "w" or user_input == 'west':
-        if hasattr(room[player.room], 'w_to'):
-            print(f'You move west to: {room[player.room].w_to.title}')
-            player.room = room[player.room].w_to.name
+        if hasattr(player.room, 'w_to'):
+            print(f'You move west to: {player.room.w_to.name}')
+            player.room = player.room.w_to
             print('\n')
         else:
             print(f"You cannot go west from here.")

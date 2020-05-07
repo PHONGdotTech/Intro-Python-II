@@ -223,6 +223,7 @@ while quit != "true":
                                 has_torch = True
                             if current_room == "true_treasure" and item.name == 'torch':
                                 true_treasure_has_torch = False
+                            # item.on_take()
                             print('\n')
                             print('********************************')
                             print(f"{player.name} put the {item.name} into their inventory.")
@@ -248,6 +249,7 @@ while quit != "true":
                             player.items.remove(item)
                             room[current_room].items.append(item)
                             room[current_room].item_names.append(item.name)
+                            # item.on_drop()
                             print('\n')
                             print('********************************')
                             print(f"{player.name} removed the {item.name} from their inventory and left it in the {room[current_room].name}.")
@@ -344,5 +346,12 @@ while quit != "true":
                     print(f"'{split_user_input[0]}' is not a possible action.")
                     print('********************************')
                     print('\n')
+            else:
+                print('\n')
+                print('********************************')
+                print(f"'{user_input}' is not a valid input. To quit, enter 'q'. To continue, choose an action. Enter 'h' for more information.")
+                print('********************************')
+                print('\n')
+
 
 
